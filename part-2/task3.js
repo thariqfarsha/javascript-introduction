@@ -31,19 +31,11 @@ const seleksiNilai = function(nilaiAwal, nilaiAkhir, dataArray){
         return errorMsg
     }
 
-    let result = []
-    dataArray.map((item) => {
-        if (item > nilaiAwal && item < nilaiAkhir) {
-            result.push(item)
-        }
+    let result = dataArray.filter((item) => {
+        return item > nilaiAwal && item < nilaiAkhir
     })
     
-    if (result.length === 0) {
-        return "Nilai tidak ditemukan"
-    }
-    
-    result.sort((a, b) => a - b)
-    return result
+    return result.length > 0 ? result.sort((a, b) => a - b) : "Nilai tidak ditemukan"
 }
 
 // console.log(seleksiNilai(5, 20 , [2, 25, 4, 14, 17, 30, 8]))
