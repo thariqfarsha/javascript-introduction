@@ -6,7 +6,7 @@ const name = [
     'Ella', 'Faith', 'Olivia', 'Penelope'
 ]
 
-const searchName = function(keyword, limitNumber, callback) {
+const searchName = function(keyword, limitNumber, callback = limitResult) {
     let errorMsg = []
 
     // Validasi keyword harus berupa string
@@ -34,7 +34,7 @@ const searchName = function(keyword, limitNumber, callback) {
         return item.toLowerCase().includes(keyword.toLowerCase())
     })
 
-    return callback(filteredName, limitNumber)
+    return filteredName.length > 0 ? callback(filteredName, limitNumber) : "Data tidak ditemukan"
 }
 
 function limitResult(dataArray, limitation) {
