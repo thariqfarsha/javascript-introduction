@@ -7,6 +7,29 @@ const name = [
 ]
 
 const searchName = function(keyword, limitNumber, callback) {
+    let errorMsg = []
+
+    // Validasi keyword harus berupa string
+    if (typeof keyword !== 'string') {
+        errorMsg.push("Keyword harus berupa string")
+    }
+
+    // Validasi limit number harus berupa number
+    if (typeof limitNumber !== 'number') {
+        errorMsg.push("Limit number harus berupa number")
+    }
+
+    // Validasi limit number minimal harus 1
+    if (limitNumber < 1) {
+        errorMsg.push("Limit number minimal 1 atau lebih")
+    }
+
+    // Menampilkan pesan error jika ada
+    if (errorMsg.length > 0) {
+        errorMsg = errorMsg.join("\n")
+        return errorMsg
+    }
+
     let filteredName = name.filter((item) => {
         return item.toLowerCase().includes(keyword.toLowerCase())
     })
