@@ -1,26 +1,28 @@
 const cekHariKerja = (day) => {
-    return new Promise((resolve, reject) =>{
-        setTimeout(() => {
-            const dataDay = ['senin', 'selasa', 'rabu', 'kamis', 'jumat']
-            let cek = dataDay.find((item) => {
-                return item === day
-            })
-            if (cek) {
-                resolve(cek)
-            } else {
-                reject(new Error('Hari ini bukan hari kerja'))
-            }
-        }, 3000);
-    })
-}
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const dataDay = ["senin", "selasa", "rabu", "kamis", "jumat"];
+      let cek = dataDay.find((item) => {
+        return item === day;
+      });
+      if (cek) {
+        resolve(cek);
+      } else {
+        reject(new Error("Hari ini bukan hari kerja"));
+      }
+    }, 3000);
+  });
+};
 
 //---------------- then - catch ---------------------
 
-cekHariKerja('selasa').then((result) => {
-    console.log(`Hari ${result} adalah hari kerja`)
-}).catch((error) => {
-    console.log(error)
-})
+cekHariKerja("selasa")
+  .then((result) => {
+    console.log(`Hari ${result} adalah hari kerja`);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 /*
 Then and catch digunakan untuk menghandle hasil promise. 
@@ -28,18 +30,18 @@ Promise yang terpenuhi akan di-resolve dan nilainya (cek) akan dijadikan argumen
 Promise yang gagal akan di-reject dan nilainya (cek) akan dijadikan argumen untuk function pada catch (error).
 */
 
-//---------------- then - catch ---------------------
+//---------------- try - catch ---------------------
 
-async function showResult() {
-    try {
-        let result = await cekHariKerja('senin')
-        console.log(`Hari ${result} adalah hari kerja`)
-    } catch (error) {
-        console.log(error)
-    }
+async function showResult(day) {
+  try {
+    let result = await cekHariKerja(day);
+    console.log(`Hari ${result} adalah hari kerja`);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-showResult()
+showResult("sabtu");
 
 /*
 Try and catch digunakan untuk menghandle hasil promise menggunakan async function.
